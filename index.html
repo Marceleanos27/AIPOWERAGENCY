@@ -91,16 +91,14 @@ body {
 
 .message.user {
   align-self: flex-end;
-  /* Gradientový prechod svetlomodrou do bielej */
-  background: linear-gradient(135deg, #00D9FF 90%, #ffffff 100%);
-  color: #003e7e; /* Tmavší modrý text pre kontrast a čitateľnosť */
+  background-color: rgba(0, 217, 255, 0.1); /* Jemné svetlomodré pozadie s 10% opacity */
+  color: #003e7e; /* Tmavší modrý text pre dobrý kontrast */
 }
 
 .message.bot {
   align-self: flex-start;
-  /* Gradient fialovej cez bielu */
-  background: linear-gradient(135deg, #7C3AED 90%, #ffffff 100%);
-  color: #3a007c; /* Tmavšia fialová farba textu */
+  background-color: rgba(124, 58, 237, 0.1); /* Jemné fialové pozadie s 10% opacity */
+  color: #3a007c; /* Tmavofialový text pre čitateľnosť */
 }
 
 #input-area {
@@ -138,7 +136,6 @@ button {
 }
 
 button:hover {
-  /* Jemne tmavší gradient pri hover efektoch pre interaktivitu */
   background: linear-gradient(135deg, #00bce5 0%, #6a34c1 100%);
   transform: scale(1.01);
   box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
@@ -512,6 +509,7 @@ if (localReply) {
   </script>
 </body>
 </html>
+
 
 
 
