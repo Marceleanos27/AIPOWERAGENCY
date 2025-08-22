@@ -91,14 +91,16 @@ body {
 
 .message.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #e0f7f7, #b8f2e6);
-  color: #1a4a5c;
+  /* Gradientový prechod svetlomodrou do bielej */
+  background: linear-gradient(135deg, #00D9FF 90%, #ffffff 100%);
+  color: #003e7e; /* Tmavší modrý text pre kontrast a čitateľnosť */
 }
 
 .message.bot {
   align-self: flex-start;
-  background: linear-gradient(135deg, #f0fff0, #e6ffe6);
-  color: #2d5a3d;
+  /* Gradient fialovej cez bielu */
+  background: linear-gradient(135deg, #7C3AED 90%, #ffffff 100%);
+  color: #3a007c; /* Tmavšia fialová farba textu */
 }
 
 #input-area {
@@ -122,7 +124,7 @@ body {
 }
 
 button {
-  background: linear-gradient(135deg, #00ff88, #1a4a5c);
+  background: linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -136,14 +138,16 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #00cc6a, #0d3845);
+  /* Jemne tmavší gradient pri hover efektoch pre interaktivitu */
+  background: linear-gradient(135deg, #00bce5 0%, #6a34c1 100%);
   transform: scale(1.01);
-  box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
 }
 
 button:active {
   transform: scale(0.99);
 }
+
 
     }
   </style>
@@ -508,6 +512,7 @@ if (localReply) {
   </script>
 </body>
 </html>
+
 
 
 
