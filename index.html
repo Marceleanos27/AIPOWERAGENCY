@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI POWER</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -19,70 +18,34 @@ body {
   bottom: 20px;
   right: 20px;
   width: 360px;
-  height: 500px;
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  max-height: 500px;
+  background: #111; /* čierne pozadie */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transition: all 0.4s ease;
   z-index: 9999;
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #chatbot-container.closed {
-  max-height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-#chatbot-container.closed #chatbot-header {
-  display: none;
-}
-
-#chatbot-container.closed #chatbot-header-closed {
-  display: block !important;
-  background: rgba(26, 26, 46, 0.9);
-  padding: 0;
-  cursor: pointer;
-  border: none;
-  backdrop-filter: blur(10px);
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-#chatbot-header-closed {
-  background: rgba(26, 26, 46, 0.8);
-  color: white;
-  padding: 0;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  max-height: 50px;
+  width: 220px;
+  border-radius: 50px;
 }
 
 #chatbot-header {
-  background: rgba(26, 26, 46, 0.8);
+  background: linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%);
   color: white;
-  padding: 16px 20px;
+  padding: 7px 20px;
   cursor: pointer;
-  font-weight: 500;
-  font-size: 1em;
+  font-weight: 600;
+  font-size: 1.05em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
 }
 
 #toggle-icon {
@@ -102,283 +65,107 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  background: #0f0f23;
-  height: calc(100% - 80px);
+  background: #ffffff; /* nech sa pozadie neprekryje */
+  height: 450px;
+  justify-content: space-between;
   box-sizing: border-box;
 }
 
 #chat-messages {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 0;
+  padding-right: 4px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
+  gap: 12px;
+  margin-bottom: 8px;
 
-#chat-messages::-webkit-scrollbar {
-  display: none; /* WebKit */
 }
 
 .message {
-  padding: 12px 16px;
-  border-radius: 18px;
-  max-width: 85%;
-  font-size: 0.9em;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 75%;
+  font-size: 0.95em;
   line-height: 1.4;
-  position: relative;
-  margin: 4px 0;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 .message.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: #ffffff;
-  position: relative;
-  z-index: 100;
-  border-radius: 18px 18px 4px 18px;
-  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.3);
+  background-color: rgba(124, 58, 237, 0.1); /* Jemné svetlomodré pozadie s 10% opacity */
+  color: #000000; /* Tmavší modrý text pre dobrý kontrast */
 }
 
 .message.bot {
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
-  position: relative;
-  z-index: 100;
-  border-radius: 18px 18px 18px 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 217, 255, 0.1); /* Jemné fialové pozadie s 10% opacity */
+  color: #000000; /* Tmavofialový text pre čitateľnosť */
 }
 
 #input-area {
   display: flex;
-  flex-direction: row;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
   margin-top: 0;
   flex-shrink: 0;
-  padding: 0;
 }
 
 #user-input {
-  flex: 1;
+  width: 100%;
   resize: none;
-  height: 44px;
-  padding: 12px 16px;
-  font-size: 14px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 60px;
+  padding: 10px 12px;
+  font-size: 1em;
+  border-radius: 10px;
+  border: 1.5px solid #b8f2e6;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  outline: none;
-  transition: all 0.3s ease;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-#user-input::-webkit-scrollbar {
-  display: none; /* WebKit */
-}
-
-#user-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-#user-input:focus {
-  border-color: #4f46e5;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
 button {
-  background: #4f46e5;
+  background: linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%);
   color: white;
   border: none;
-  border-radius: 50%;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 500;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   box-sizing: border-box;
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-  height: 44px;
-  width: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 button:hover {
-  background: #3730a3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+  background: linear-gradient(135deg, #00bce5 0%, #6a34c1 100%);
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
 }
 
 button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+  transform: scale(0.99);
 }
 
-/* Responzívne štýly pre mobilné zariadenia */
-@media (max-width: 768px) {
-  #chatbot-container {
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
-    width: auto;
-    max-width: calc(100vw - 20px);
-    height: auto;
-    max-height: 70vh;
-  }
-  
-  #chatbot-container.closed {
-    width: 60px;
-    height: 60px;
-    left: auto;
-    right: 10px;
-  }
-  
-  #chatbot-header {
-    padding: 8px 16px;
-    font-size: 0.95em;
-  }
-  
-  #chatbot-body {
-    padding: 12px;
-    height: calc(70vh - 80px);
-  }
-  
-  #user-input {
-    height: 50px;
-    font-size: 16px; /* Zabráni zoomovaniu na iOS */
-  }
-  
-  .message {
-    max-width: 85%;
-    font-size: 0.9em;
-  }
-}
 
-@media (max-width: 480px) {
-  #chatbot-container {
-    bottom: 5px;
-    right: 5px;
-    left: 5px;
-    max-width: calc(100vw - 10px);
-    height: auto;
-    max-height: 75vh;
-  }
-  
-  #chatbot-container.closed {
-    width: 60px;
-    height: 60px;
-    right: 5px;
-  }
-  
-  #chatbot-header {
-    padding: 6px 12px;
-    font-size: 0.9em;
-  }
-  
-  #chatbot-header img {
-    height: 32px !important;
-  }
-  
-  #chatbot-body {
-    padding: 10px;
-    height: calc(75vh - 75px);
-  }
-  
-  #user-input {
-    height: 45px;
-    padding: 8px 10px;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px;
-    font-size: 0.9em;
-  }
-  
-  .message {
-    padding: 8px 12px;
-    max-width: 90%;
-    font-size: 0.85em;
-  }
-  
-  #toggle-icon {
-    font-size: 1.3em;
-  }
-}
-
-/* Landscape orientácia na mobiloch */
-@media (max-width: 768px) and (orientation: landscape) {
-  #chatbot-container {
-    height: auto;
-    max-height: 85vh;
-  }
-  
-  #chatbot-body {
-    height: calc(85vh - 80px);
-  }
-}
-
-/* Veľmi malé zariadenia */
-@media (max-width: 320px) {
-  #chatbot-container.closed {
-    width: 60px;
-    height: 60px;
-  }
-  
-  #chatbot-header {
-    font-size: 0.85em;
-  }
-  
-  #chatbot-header img {
-    height: 28px !important;
-  }
-}
+    }
   </style>
 </head>
 <body>
   <div id="chatbot-container" class="closed">
     <div id="chatbot-header" onclick="toggleChatbot()">
-      <!-- Kompletný režim (otvorený) -->
-      <div class="user-info" style="display: flex; align-items: center; gap: 12px;">
-        <div style="position: relative;">
-          <img src="logo_aiPower-03-03.png" alt="AI Asistent" style="height:40px; width:40px; border-radius:50%; object-fit:cover;">
-          <div style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #10b981; border-radius: 50%; border: 2px solid #1a1a2e;"></div>
-        </div>
-        <div>
-          <div style="font-weight: 600; font-size: 16px; color: #ffffff; margin-bottom: 2px;">AI Asistent</div>
-          <div style="font-size: 12px; color: #10b981; font-weight: 500;">Online</div>
-        </div>
-      </div>
-      
-      <span id="toggle-icon" style="font-size: 20px; font-weight: 300;">+</span>
-    </div>
-
-    <!-- Header pre zatvorený stav -->
-    <div id="chatbot-header-closed" onclick="toggleChatbot()" style="display: none;">
-      <img src="logo_aiPower-03-03.png" alt="AI Asistent" style="height:40px; width:40px; border-radius:50%; object-fit:cover;">
-    </div>
+  <img src="logo_aiPower-03-03.png" alt="AI Power Logo" style="height:38px; vertical-align:middle; margin-right:0px;">
+  AI POWER <span id="toggle-icon">+</span>
+</div>
 
     <div id="chatbot-body">
       <div id="chat-messages">
-        <div class="message bot">Dobrý deň! Ako vám môžem pomôcť? 👋</div>
+        <div class="message bot">
+          <strong>AI POWER:</strong> Vítaj! Som AI Power Bot, tvoj osobný digitálny pomocník. Ako ti dnes môžem pomôcť? 🌌
+        </div>
       </div>
       <div id="input-area">
-        <textarea id="user-input" placeholder="Napíšte správu..."></textarea>
-        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        <textarea id="user-input" placeholder="Napíš mi otázku..."></textarea>
+        <button onclick="sendMessage()">Odoslať správu</button>
       </div>
     </div>
   </div>
@@ -402,46 +189,11 @@ button:active {
     const chatbox = document.getElementById("chat-messages");
     const inputField = document.getElementById("user-input");
 
-    // Informuj parent, že je chatbot na začiatku zatvorený
-    if (window.parent !== window) {
-      window.parent.postMessage({ type: "chatbot-closed" }, "*");
-    }
-
-    // Event listener pre Enter a Shift+Enter
-    inputField.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault(); // Zabráni štandardnému správaniu (nový riadok)
-        sendMessage(); // Odošle správu
-      }
-      // Shift+Enter vytvorí nový riadok (štandardné správanie textarea)
-    });
-
     function toggleChatbot() {
       const container = document.getElementById("chatbot-container");
-      const openHeader = document.getElementById("chatbot-header");
-      const closedHeader = document.getElementById("chatbot-header-closed");
-      const icon = document.getElementById("toggle-icon");
-      
       container.classList.toggle("closed");
-      
-      if (container.classList.contains("closed")) {
-        // Zatvorený stav
-        openHeader.style.display = "none";
-        closedHeader.style.display = "block";
-        // Informuj parent o zatvorení
-        if (window.parent !== window) {
-          window.parent.postMessage({ type: "chatbot-closed" }, "*");
-        }
-      } else {
-        // Otvorený stav
-        openHeader.style.display = "flex";
-        closedHeader.style.display = "none";
-        icon.innerText = "−";
-        // Informuj parent o otvorení
-        if (window.parent !== window) {
-          window.parent.postMessage({ type: "chatbot-opened" }, "*");
-        }
-      }
+      const icon = document.getElementById("toggle-icon");
+      icon.innerText = container.classList.contains("closed") ? "+" : "−";
     }
 
     function delay(ms) {
@@ -737,7 +489,7 @@ if (localReply) {
       // Tu sa spracuje **text** na <strong>text</strong>
       const formattedMessage = message.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
-      msgDiv.innerHTML = formattedMessage;
+      msgDiv.innerHTML = `<strong>${sender}:</strong> ${formattedMessage}`;
 
       chatbox.appendChild(msgDiv);
       chatbox.scrollTop = chatbox.scrollHeight;
@@ -758,7 +510,6 @@ if (localReply) {
   </script>
 </body>
 </html>
-
 
 
 
